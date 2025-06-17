@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    container_name: gpt_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gpt_assistant
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  redis:
+    image: redis:alpine
+    container_name: gpt_redis
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: ./backend
+    container_name: gpt_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=gpt_assistant
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - REDIS_HOST=redis
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./backend:/var/www
+    command: sh -c "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"
+
+  frontend:
+    build: ./frontend
+    container_name: gpt_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+
+volumes:
+  dbdata:
