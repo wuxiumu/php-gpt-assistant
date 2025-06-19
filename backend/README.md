@@ -1,61 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## 🟢 **当前 Laravel 7项目功能清单**
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### 1. **用户体系**
 
-## About Laravel
+- 注册、登录、JWT 鉴权
+- 多角色（如管理员/普通用户），接口/页面权限控制
+- 用户信息、头像管理，头像裁剪+OSS存储
+- 资料修改、API Key 绑定与管理
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 2. **AI 助手服务**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- GPT 聊天接口，支持模型切换、自定义 system prompt
+- Token 消耗统计，每用户/每会话消耗实时聚合与可视化
+- 聊天/会话历史记录、搜索
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 3. **内容安全/合规风控**
 
-## Learning Laravel
+- 接入阿里云内容安全 API，**支持图片、文本智能审核**
+- 同步拦截明显违规（block）、可疑内容自动进入人工审核池（review）
+- 支持内容安全**回调接口**，违规记录落库+OSS日志归档
+- 审核日志、用户违规内容持久化，支持运营后台查询
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 4. **文件管理与日志归档**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 通用文件上传，所有上传/操作/审核日志**归档到阿里云OSS**
+- 支持大文件/高并发安全归档，日志便于追溯合规
+- 支持后台一键导出任意周期的日志/违规数据
 
-## Laravel Sponsors
+### 5. **多渠道验证码与认证**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- 图形验证码（防刷/防爆破）
+- 短信、邮箱验证码
+- 谷歌 Authenticator 二步认证，保障账户安全
 
-### Premium Partners
+### 6. **开放与对接能力**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+- 完整的 RESTful API，接口文档清晰
+- 支持第三方服务集成，便于扩展（如多云内容审核、更多AI模型）
+- 支持前端 Vue3/小程序/移动端等多端对接
 
-## Contributing
+### 7. **运维和部署**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- 支持 Docker 一键部署，宝塔/云主机友好
+- CI/CD 脚本、自动化测试覆盖主要业务
 
-## Code of Conduct
+------
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🟡 **技术亮点/加分项**
 
-## Security Vulnerabilities
+- **前后端解耦，接口安全规范**：接口全部 JWT 鉴权，参数校验/权限中间件
+- **内容安全全链路可追溯**：日志归档OSS、违规持久化、后台管理、合规可查
+- **高可用/高安全标准**：操作频率限制、防刷、异地备份
+- **第三方服务抽象**：验证码、内容审核、存储等全部独立成控制器/服务，便于维护和横向扩展
+- **多端/多角色兼容**：Web、APP、管理后台、API/开放平台无缝对接
+- **开源与团队协作友好**：结构清晰、文档完备、易于二次开发
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+------
 
-## License
+### 项目亮点：
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> 该项目围绕AI助手产品需求，全面集成了多用户体系、内容安全审核、OSS日志归档与违规可追溯、第三方验证码与认证，以及开放接口能力，兼顾安全、合规与可扩展性。所有三方集成模块（如内容安全、短信、邮件、谷歌Auth）均独立服务化设计，方便横向扩展和运维，支持标准云原生部署方案，适合企业级产品和团队协作场景。
+
+------

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+    <diagram id="W2EKv6HJEFmxQnExKAKk" name="架构总览">
+        <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+
+                <!-- 用户前端 -->
+                <mxCell id="2" value="前端用户层
+Vue3 / Vite / Pinia
+响应式多端" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="120" width="160" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- 后端API -->
+                <mxCell id="3" value="后端API层
+Laravel / RESTful
+用户、AI、文件、审核、日志" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="120" width="190" height="90" as="geometry"/>
+                </mxCell>
+
+                <!-- 管理后台 -->
+                <mxCell id="4" value="管理后台
+权限分级 / 内容审核 / 运营" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="120" width="140" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- 数据库 -->
+                <mxCell id="5" value="MySQL / Redis
+用户/内容/统计/违规" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="260" width="160" height="60" as="geometry"/>
+                </mxCell>
+
+                <!-- OSS -->
+                <mxCell id="6" value="OSS对象存储
+头像/文件/审核日志" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="260" width="150" height="60" as="geometry"/>
+                </mxCell>
+
+                <!-- 阿里云内容安全 -->
+                <mxCell id="7" value="阿里云内容安全
+文本/图片/回调审核" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="850" y="180" width="170" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：前端 -> 后端 -->
+                <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;endArrow=block;endFill=1;" edge="1" parent="1" source="2" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：后端 -> 数据库 -->
+                <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;endArrow=block;endFill=1;" edge="1" parent="1" source="3" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：后端 -> OSS -->
+                <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;endArrow=block;endFill=1;" edge="1" parent="1" source="3" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：后端 -> 管理后台 -->
+                <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;endArrow=block;endFill=1;" edge="1" parent="1" source="3" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：后端 -> 内容安全 -->
+                <mxCell id="12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#999999;endArrow=block;endFill=1;" edge="1" parent="1" source="3" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：内容安全 -> 后端 (回调) -->
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#999999;dashed=1;endArrow=block;endFill=0;" edge="1" parent="1" source="7" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：OSS -> 管理后台 -->
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;endArrow=block;endFill=1;" edge="1" parent="1" source="6" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- 箭头：数据库 -> 管理后台 -->
+                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;endArrow=block;endFill=1;" edge="1" parent="1" source="5" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
