@@ -1,3 +1,9 @@
+# php-gpt-assistant · 白标 AI 助手平台
+
+> PHP 全栈 AI 聊天：多模型、多用户、用量统计、安全审核——适合小团队**换成自己的品牌客服/助手**。
+
+**定制 / 私有化：** 微信 **qingbao199101**（备注：AI助手）｜ [wuxiumu@163.com](mailto:wuxiumu@163.com)
+
 # php-gpt-assistant
 
 > 🚀 开箱即用的全栈 AI 聊天助手平台 —— 专为开发者和团队打造，兼顾“AI体验、安全合规、二次扩展”三大核心价值。
@@ -108,4 +114,44 @@
 
 <img src="https://archive.biliimg.com/bfs/archive/4b5edd96f6b0ca1345bb4ffc0910c443a2d65b1d.png"  referrerpolicy="no-referrer">
 
+## SEO / GEO 字段预留
+
+> 产品页 / 落地页统一生成时填入；本阶段只预留字段。
+
+| 字段 | 类型 | 用途 |
+|---|---|---|
+| `seo_title` | string | `<title>` / OG title |
+| `seo_description` | string | meta description |
+| `seo_keywords` | string[] | 可选关键词 |
+| `canonical_url` | url | 规范链接 |
+| `og_image` | url | 分享图 |
+| `robots` | string | 如 `index,follow` |
+| `json_ld_type` | string | SoftwareApplication / WebPage / FAQPage |
+| `geo_region` | string | 地域业务时使用 |
+| `geo_placename` | string | 城市/地标 |
+| `geo_position` | string | 可选 lat,long |
+| `hreflang` | map | zh-CN / en |
+| `site_name` | string | 白标品牌名 |
+
+
+## 定制合作
+
+品牌皮肤、知识库接入、模型网关、权限与计费页。加微信备注「AI助手」。
+
+---
+
+## 联系方式
+
+定制、演示或合作：
+
+- 邮箱：[wuxiumu@163.com](mailto:wuxiumu@163.com)
+- 微信：**qingbao199101**（添加请备注来意）
+
+### 赞助支持
+
+如果内容对你有帮助，欢迎自愿赞助。
+
+| 微信赞赏码 | 支付宝收款码 |
+|---|---|
+| ![微信赞赏码](https://chiguashentan-test.oss-cn-beijing.aliyuncs.com/wxprogram/zan/20261002185236_31_227.png) | ![支付宝收款码](https://chiguashentan-test.oss-cn-beijing.aliyuncs.com/wxprogram/zan/20261002185309_32_227.jpg) |
 
