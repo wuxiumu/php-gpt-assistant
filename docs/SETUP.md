@@ -44,6 +44,7 @@ cd backend
 cp .env.example .env
 composer install
 php artisan key:generate
+php artisan jwt:secret
 ```
 2.1 数据库/Redis/OSS 配置
 
@@ -57,6 +58,7 @@ DB_DATABASE=gpt_assistant
 DB_USERNAME=root
 DB_PASSWORD=yourpassword
 REDIS_HOST=127.0.0.1
+JWT_SECRET=
 OSS_ACCESS_KEY_ID=xxx
 OSS_ACCESS_KEY_SECRET=xxx
 OSS_BUCKET=xxx

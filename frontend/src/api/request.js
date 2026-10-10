@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useLoading } from '../store/loading'
 
 const service = axios.create({
-    baseURL: 'https://php-gpt-assistant.51dsn.com/api',
+    baseURL: import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000/api',
     timeout: 10000
 })
 

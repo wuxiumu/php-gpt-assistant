@@ -74,7 +74,7 @@
 
 ## 快速开始
 
-详见 [SETUP.md](./SETUP.md) / [DEPLOY.md](./DEPLOY.md)
+详见 [SETUP.md](./docs/SETUP.md) / [DEPLOY.md](./docs/DEPLOY.md)
 
 
 ## 在线体验🎉

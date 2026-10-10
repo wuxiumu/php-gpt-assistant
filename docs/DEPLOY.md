@@ -27,32 +27,42 @@
 1. 克隆项目代码：
 
 ```bash
-   git clone https://github.com/yourname/php-gpt-assistant.git
+   git clone https://github.com/wuxiumu/php-gpt-assistant.git
    cd php-gpt-assistant
 ```
 
 
 
-1. 配置后端环境变量：
+2. 准备环境变量（示例文件只有占位符，不要把真实密钥提交回仓库）：
 
 ```
+cp .env.example .env
 cp backend/.env.example backend/.env
-# 按实际修改 MySQL/Redis/OSS 等配置
+# 编辑 .env：把 MYSQL_ROOT_PASSWORD 改成你的数据库密码
+# 编辑 backend/.env：填写同一套数据库密码，并生成应用密钥
+cd backend
+php artisan key:generate
+php artisan jwt:secret
+cd ..
 ```
 
-2. 一键启动：
+没有本机 PHP 时，在 `backend/.env` 里自行填入 `APP_KEY`（`base64:` 开头）和 `JWT_SECRET`。暂不上传头像时，OSS 变量留空。
+
+3. 一键启动。镜像内会安装依赖；修改代码后需要重新构建：
 
 
 ```
 docker-compose up --build -d
 ```
 
-2. 首次启动后端会自动 migrate 数据库。
+4. 后端容器会等待数据库就绪，然后执行 `php artisan migrate --force`。Compose 把 `DB_HOST` 覆盖为 `db`、`REDIS_HOST` 覆盖为 `redis`，数据库密码使用根目录 `.env` 的 `MYSQL_ROOT_PASSWORD`。
 
-3. 访问：
+5. 访问：
 
 - 前端：http://服务器IP:5173
 - 后端 API：http://服务器IP:8000/api
+
+MySQL（3306）和 Redis（6379）只绑定在服务器本机 `127.0.0.1`。前端镜像使用根目录 `.env` 的 `VITE_API_BASE`（默认 `http://localhost:8000/api`）。配置检查：`sh scripts/smoke.sh`。
 
  
 
@@ -217,6 +227,7 @@ location / {
 
 ```
 APP_KEY=（用 php artisan key:generate 生成）
+JWT_SECRET=（用 php artisan jwt:secret 生成）
 DB_HOST=数据库地址
 DB_DATABASE=数据库名
 DB_USERNAME=用户名
@@ -227,7 +238,10 @@ OSS_ACCESS_KEY_SECRET=阿里云OSS secret
 OSS_BUCKET=Bucket名称
 OSS_ENDPOINT=oss-cn-xxx.aliyuncs.com
 OSS_HOST=https://xxx.oss-cn-xxx.aliyuncs.com
+CORS_ALLOWED_ORIGINS=*
 ```
+
+Docker Compose 启动时会覆盖 `DB_HOST=db`、`REDIS_HOST=redis`，并用根目录 `.env` 的 `MYSQL_ROOT_PASSWORD` 作为 `DB_PASSWORD`。
 
 
 
@@ -239,6 +253,8 @@ OSS_HOST=https://xxx.oss-cn-xxx.aliyuncs.com
 ```
 VITE_API_BASE=http://你的后端API地址
 ```
+
+本地开发复制 `frontend/.env.example`。Docker 构建读取根目录 `.env` 的 `VITE_API_BASE`。
 
 
 

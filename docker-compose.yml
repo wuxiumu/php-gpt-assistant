@@ -4,46 +4,54 @@ services:
     image: mysql:5.7
     container_name: gpt_mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: gpt_assistant
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}"
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-gpt_assistant}
       TZ: Asia/Shanghai
     ports:
-      - "3306:3306"
+      - "127.0.0.1:3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
   redis:
     image: redis:alpine
     container_name: gpt_redis
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
 
   backend:
     build: ./backend
     container_name: gpt_backend
     ports:
       - "8000:8000"
+    env_file:
+      - ./backend/.env
     environment:
-      - DB_HOST=db
-      - DB_DATABASE=gpt_assistant
-      - DB_USERNAME=root
-      - DB_PASSWORD=root
-      - REDIS_HOST=redis
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE:-gpt_assistant}
+      DB_USERNAME: root
+      DB_PASSWORD: "${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD in .env}"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     depends_on:
       - db
       - redis
-    volumes:
-      - ./backend:/var/www
-    command: sh -c "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: ${VITE_API_BASE:-http://localhost:8000/api}
     container_name: gpt_frontend
     ports:
       - "5173:80"
     depends_on:
       - backend
-    volumes:
-      - ./frontend:/app
 
 volumes:
   dbdata:
